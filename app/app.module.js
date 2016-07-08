@@ -7,4 +7,4 @@ angular.module('omtApp', [
     'ngMaterial',
     'LocalStorageModule',
     'customizer'
-])
+]);
