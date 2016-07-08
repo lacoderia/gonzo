@@ -5,7 +5,7 @@
 
         /**
          *
-         * @type {taskController}
+         * @type {Object}
          */
         var ctrl = this;
 
