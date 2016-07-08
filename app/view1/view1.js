@@ -11,13 +11,11 @@ angular.module('myApp.view1', ['ngRoute'])
 
 .controller('View1Ctrl', ['$http', '$q', function($http, $q) {
 
-   var loginServiceURL = 'http://198.61.202.55:8081/index';
+   var loginServiceURL = 'http://localhost:8081/index';
 
     return $http.post(loginServiceURL)
                 .then(function(response) {
-                    var data = response.data;
-                    console.log(data);
-
+                    var data = response.data;                    
                 }, function(error){
                     return $q.reject(error.data);
                 });
