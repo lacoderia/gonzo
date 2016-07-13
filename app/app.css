@@ -5,6 +5,9 @@ md-toolbar h2 {
   color: white;
   font-weight: bold; }
 
+.md-steppers {
+  background-color: #999; }
+
 md-content {
   background: #EEEDED;
   padding: 6rem 3rem; }
