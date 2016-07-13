@@ -9,7 +9,29 @@
          */
         var ctrl = this;
 
-        console.log('ENTRE CUSTOMIZER')
+        /**
+         * stepper object
+         */
+        ctrl.steps = {
+            step1: {
+                completed: false,
+                disabled: false
+            },
+            step2: {
+                completed: false,
+                disabled: false
+            },
+            step3: {
+                completed: false,
+                disabled: false
+            },
+            step4: {
+                completed: false,
+                disabled: true
+            }
+        };
+
+        ctrl.selectedStep = 0;
     }
 
     angular

@@ -1,30 +1,16 @@
-<md-steppers>
-    <md-step label="Select the tile size set" md-complete="step1.completed"  ng-disabled="step1.disabled">
+<md-steppers class="md-steppers" md-selected="$ctrl.selectedStep">
+    <md-step label="Select the tile size set" md-complete="$ctrl.steps.step1.completed"  ng-disabled="$ctrl.steps.step1.disabled">
     <md-content flex>
         <tile-set ng-cloak></tile-set>
     </md-content>
     </md-step>
-    <md-step label="Customize your tile pattern" md-complete="step2.completed"  ng-disabled="step2.disabled">
+    <md-step label="Customize your tile pattern" md-complete="$ctrl.steps.step2.completed"  ng-disabled="$ctrl.steps.step2.disabled">
         <md-content>PASO 2</md-content>
     </md-step>
-    <md-step label="Test it" md-complete="step3.completed"  ng-disabled="step3.disabled">
+    <md-step label="Test it" md-complete="$ctrl.steps.step3.completed"  ng-disabled="$ctrl.steps.step3.disabled">
         <md-content>PASO 3</md-content>
     </md-step>
-    <md-step label="Finish" md-complete="step4.completed"  ng-disabled="step4.disabled">
+    <md-step label="Finish" md-complete="$ctrl.steps.step4.completed"  ng-disabled="$ctrl.steps.step4.disabled">
         <md-content>PASO 4</md-content>
     </md-step>
 </md-steppers>
-
-<!--md-content flex>
-    <md-list ng-cloak class="md-dense todo-list-component">
-        <md-subheader class="md-no-sticky">
-            <div layout="column">
-
-            </div>
-        </md-subheader>
-    </md-list>
-</md-content-->
-
-<!--md-button class="md-fab md-fab-bottom-right" aria-label="Actualizar" ng-click="$ctrl.refreshTasks()">
-    <md-icon md-font-library="material-icons">&#xE042;</md-icon>
-</md-button-->
