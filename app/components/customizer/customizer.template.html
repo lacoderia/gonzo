@@ -1,5 +1,5 @@
-<md-steppers flex layout-fill >
-    <md-step label="Select the tile size set" md-complete="step1.completed"  ng-disabled="step1.disabled">
+<md-steppers flex layout-fill md-stretch-steppers="always">
+    <md-step label="Select the tile size set" md-complete="step1.completed" ng-disabled="step1.disabled">
         <md-content flex md-scroll-y layout-fill class="tile-set-content">
             <tile-set layout="row" layout-align="start end" layout-padding flex></tile-set>
         </md-content>
