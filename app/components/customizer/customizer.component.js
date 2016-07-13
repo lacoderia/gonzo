@@ -9,7 +9,7 @@
          */
         var ctrl = this;
 
-        console.log('ENTRE AQUI')
+        console.log('ENTRE CUSTOMIZER')
     }
 
     angular

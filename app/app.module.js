@@ -5,6 +5,9 @@ angular.module('omtApp', [
     'ngRoute',
     'ngResource',
     'ngMaterial',
+    'md-steppers',
     'LocalStorageModule',
-    'customizer'
+    'navigation',
+    'customizer',
+    'tileSet'
 ]);
