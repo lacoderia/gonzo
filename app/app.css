@@ -5,44 +5,49 @@ md-toolbar h2 {
   color: white;
   font-weight: bold; }
 
-.md-steppers {
-  background-color: #999; }
-
-md-content {
-  background: #EEEDED;
-  padding: 6rem 3rem; }
+.tile-set-content {
+  background: #EEEDED; }
 
 tile-set .tile-collection {
+  width: 100%; }
+tile-set .tile-collection-item {
   background: white;
+  cursor: pointer;
   text-align: center; }
-  tile-set .tile-collection .tile-size {
+  tile-set .tile-collection-item:hover {
+    background: #DCEDC8; }
+  tile-set .tile-collection-item .tile-size {
+    background: #8BC34A;
     display: inline-block; }
-    tile-set .tile-collection .tile-size.size-30 {
-      background: red;
+    tile-set .tile-collection-item .tile-size.size-30 {
       height: 120px;
       width: 120px; }
-    tile-set .tile-collection .tile-size.size-25 {
-      background: red;
+    tile-set .tile-collection-item .tile-size.size-25 {
       height: 100px;
       width: 100px; }
-    tile-set .tile-collection .tile-size.size-20 {
-      background: red;
+    tile-set .tile-collection-item .tile-size.size-20 {
       height: 80px;
       width: 80px; }
-    tile-set .tile-collection .tile-size.size-15 {
-      background: red;
+    tile-set .tile-collection-item .tile-size.size-15 {
       height: 60px;
       width: 60px; }
-    tile-set .tile-collection .tile-size.size-10 {
-      background: red;
+    tile-set .tile-collection-item .tile-size.size-10 {
       height: 40px;
       width: 40px; }
-    tile-set .tile-collection .tile-size.size-7 {
-      background: red;
+    tile-set .tile-collection-item .tile-size.size-7 {
       height: 28px;
       width: 28px; }
-  tile-set .tile-collection .tile-title {
+  tile-set .tile-collection-item .tile-title {
+    background: #F4F4F4;
+    bottom: 0;
     display: block;
-    font-size: 1rem; }
+    font-size: 1.2rem;
+    left: 0;
+    margin: 0;
+    overflow: hidden;
+    padding: 0.6rem;
+    position: absolute;
+    text-align: center !important;
+    width: 100%; }
 
 /*# sourceMappingURL=app.css.map */

@@ -1,47 +1,55 @@
-md-content
+.tile-set-content
   background: $color-gray-1
-  padding: 6rem 3rem
-
-
 
 tile-set
   .tile-collection
+    width: 100%
+
+  .tile-collection-item
     background: white
+    cursor: pointer
     text-align: center
 
+    &:hover
+      background: #DCEDC8
+
     .tile-size
+      background: #8BC34A
       display: inline-block
 
       &.size-30
-        background: red
         height: 120px
         width: 120px
 
       &.size-25
-        background: red
         height: 100px
         width: 100px
 
       &.size-20
-        background: red
         height: 80px
         width: 80px
 
       &.size-15
-        background: red
         height: 60px
         width: 60px
 
       &.size-10
-        background: red
         height: 40px
         width: 40px
 
       &.size-7
-        background: red
         height: 28px
         width: 28px
 
     .tile-title
+      background: $color-gray-2
+      bottom: 0
       display: block
-      font-size: 1rem
+      font-size: 1.2rem
+      left: 0
+      margin: 0
+      overflow: hidden
+      padding: 0.6rem
+      position: absolute
+      text-align: center !important
+      width: 100%

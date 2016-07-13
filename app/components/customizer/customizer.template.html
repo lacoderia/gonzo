@@ -1,12 +1,7 @@
 <md-steppers flex layout-fill >
     <md-step label="Select the tile size set" md-complete="step1.completed"  ng-disabled="step1.disabled">
-        <md-content flex md-scroll-y layout-fill layout-padding>
-            <div class="set-list" layout="column" layout-align="start end" layout-fill layout-padding flex>
-                <div class="tile-collection" ng-repeat="item in $ctrl.getTiLeSetItems()" flex="grow">
-                    <span class="tile-size {{ ::item.sizeClass }}"></span>
-                    <h3 class="tile-title" ng-bind="::item.title"></h3>
-                </div>
-            </div>
+        <md-content flex md-scroll-y layout-fill class="tile-set-content">
+            <tile-set layout="row" layout-align="start end" layout-padding flex></tile-set>
         </md-content>
     </md-step>
     <md-step label="Customize your tile pattern" md-complete="$ctrl.steps.step2.completed"  ng-disabled="$ctrl.steps.step2.disabled">
