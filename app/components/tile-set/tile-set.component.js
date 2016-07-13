@@ -9,7 +9,7 @@
          */
         var ctrl = this;
 
-        ctrl.getTiLeSetItems = function () {
+        ctrl.getTileSetItems = function () {
             return TILE_SET_ITEMS;
         };
 
