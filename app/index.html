@@ -21,12 +21,10 @@
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
 </head>
-<body ng-cloak layout="row">
+<body ng-cloak layout="column">
 
-<div id="main" layout="column" flex>
-    <navigation></navigation>
-    <customizer flex></customizer>
-</div>
+<navigation></navigation>
+<customizer id="main" flex layout="column"></customizer>
 
 <!-- Angular libs -->
 <script src="bower_components/angular/angular.js"></script>
