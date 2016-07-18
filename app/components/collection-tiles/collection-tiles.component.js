@@ -31,6 +31,7 @@
          */
         ctrl.getSelectedCollectionTile = function() {
             var tiles = (storeService.getSelectedCollectionTile())? storeService.getSelectedCollectionTile().tiles : [];
+            console.log(tiles);
             return tiles;
         } ;
 
