@@ -1,4 +1,4 @@
-<div layout="row" class="tile-collection" layout-align="center start" layout-margin layout-wrap>
+<div layout="row" class="tile-collection" layout-align="center start" layout-margin layout-wrap ng-init="$ctrl.init()">
     <div class="tile-collection-item" ng-repeat="item in $ctrl.getCollectionTiles()" md-whiteframe="1" flex="15" flex-xs="70" flex-sm="45" flex-md="30">
         <a href="#" title="{{ ::item.title }}" class="tile-content" ng-click="$ctrl.selectCollectionTiles(item.id)">
             <div class="tile-body">
@@ -7,8 +7,4 @@
             <h3 class="tile-title" ng-bind="::item.title"></h3>
         </a>
     </div>
-</div>
-
-<div>
-    {{ $ctrl.getSelectedCollectionTile() }}
 </div>

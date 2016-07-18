@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function collectionTilesController(storeService, collectionTilesService) {
+    function collectionTilesController($scope, $mdBottomSheet, storeService, collectionTilesService) {
 
         /**
          *
@@ -9,6 +9,7 @@
          */
         var ctrl = this;
 
+        var _tiles = [];
         /**
          *
          * @returns {*}
@@ -23,6 +24,9 @@
          */
         ctrl.selectCollectionTiles = function(collectionId) {
             collectionTilesService.selectCollectionTiles(collectionId);
+            _tiles = storeService.getSelectedCollectionTile().tiles;
+
+            showGridBottomSheet();
         };
 
         /**
@@ -30,10 +34,59 @@
          * @returns {*}
          */
         ctrl.getSelectedCollectionTile = function() {
-            var tiles = (storeService.getSelectedCollectionTile())? storeService.getSelectedCollectionTile().tiles : [];
-            console.log(tiles);
-            return tiles;
-        } ;
+            return _tiles;
+        };
+
+        /**
+         *
+         */
+        var resetTiles = function() {
+            for(var i=0; i<_tiles.length; i++) {
+                _tiles[i].selected = false;
+            }
+        };
+
+        /**
+         *
+         */
+        ctrl.toggleTile = function(tile) {
+            tile.selected = !tile.selected;
+        };
+
+        /**
+         *
+         */
+        var showGridBottomSheet = function() {
+            resetTiles();
+
+            $mdBottomSheet.show({
+                templateUrl: 'components/collection-tiles/tile-selector.template.html',
+                controller: collectionTilesController,
+                scope: $scope,
+                preserveScope: true,
+            }).then(function(clickedItem) {
+                $mdToast.show(
+                    $mdToast.simple()
+                        .textContent(clickedItem['name'] + ' clicked!')
+                        .position('top right')
+                        .hideDelay(1500)
+                );
+            });
+        };
+
+        /**
+         *
+         */
+        ctrl.endStep = function() {
+            $mdBottomSheet.hide();
+        };
+
+        /**
+         *
+         */
+        ctrl.init = function() {
+            _tiles = (storeService.getSelectedCollectionTile())? storeService.getSelectedCollectionTile().tiles : [];
+        }
 
     }
 
