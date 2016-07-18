@@ -78,6 +78,7 @@
          *
          */
         ctrl.endStep = function() {
+            console.log(ctrl.customizerCtrl.steps);
             $mdBottomSheet.hide();
         };
 
@@ -97,6 +98,9 @@
             controller: collectionTilesController,
             bindings: {
 
+            },
+            require: {
+                customizerCtrl: '^customizer'
             }
         });
 
