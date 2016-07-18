@@ -9,5 +9,5 @@ angular.module('omtApp', [
     'LocalStorageModule',
     'navigation',
     'customizer',
-    'tileSet'
+    'collectionTiles'
 ]);

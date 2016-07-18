@@ -2,7 +2,7 @@
     <div class="tile-collection-item" ng-repeat="item in $ctrl.getCollectionTiles()" md-whiteframe="1" flex="15" flex-xs="70" flex-sm="45" flex-md="30">
         <a href="#" title="{{ ::item.title }}" class="tile-content" ng-click="$ctrl.selectCollectionTiles(item.id)">
             <div class="tile-body">
-                <div class="tile-size size-{{ ::item.centimeters }}"></div>
+                <div class="tile-size size-{{ ::item.inches }}"></div>
             </div>
             <h3 class="tile-title" ng-bind="::item.title"></h3>
         </a>
