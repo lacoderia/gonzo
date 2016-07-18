@@ -3,10 +3,7 @@
 
     angular.module('omtApp').factory('tileSetService', ['storeService', 'TILE_SET_ITEMS', function (storeService, TILE_SET_ITEMS) {
 
-        init();
-
-        //var _colecctionTiles = [];
-        var _colecctionTiles = storeService.getCollectionsTiles();
+        var _colecctionTiles = [];
 
         /**
          *
@@ -20,23 +17,25 @@
          *
          * @returns {*}
          */
-        function getCollectionsTiles() {
-            console.log(storeService.getCollectionsTiles())
-            //return storeService.getCollectionsTiles();
+        function getCollectionTiles() {
+            return _colecctionTiles;
         };
 
         /**
          *
          */
         function init(){
-            if(TILE_SET_ITEMS.length > 0){
-                storeService.setCollectionsTiles(TILE_SET_ITEMS);
+            if(TILE_SET_ITEMS.length){
+                storeService.setCollectionTiles(TILE_SET_ITEMS);
+                _colecctionTiles = storeService.getCollectionTiles();
             }
         };
+
+        init();
         
         var service = {
             callCollectionTiles: callCollectionTiles,
-            getCollectionsTiles: getCollectionsTiles
+            getCollectionTiles: getCollectionTiles
         };
 
         return service;

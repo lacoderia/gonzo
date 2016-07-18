@@ -8,8 +8,6 @@
          * @type {Object}
          */
         var ctrl = this;
-
-        console.log('ENTRE NAVIGATION')
     }
 
     angular

@@ -9,14 +9,17 @@
          */
         var ctrl = this;
 
-        ctrl.getCollectionsTiles = function () {
-            console.log('ENTR A GET COLLECTIONS')
-            //return tileSetService.getCollectionsTiles();
+        ctrl.getCollectionTiles = function () {
+            return tileSetService.getCollectionTiles();
         };
 
         ctrl.selectCollectionTiles = function(collectionId) {
 
         };
+
+        ctrl.init = function() {
+
+        }
 
     }
 

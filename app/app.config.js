@@ -21,6 +21,6 @@ angular.module('omtApp')
         { 'id': 3, 'title': '8x8" (20x20cm)', 'inches': 8, 'centimeters': 20, 'tiles': [] },
         { 'id': 4, 'title': '6x6" (15x15cm)', 'inches': 6, 'centimeters': 15, 'tiles': [] },
         { 'id': 5, 'title': '4x4" (10x10cm)', 'inches': 4, 'centimeters': 10, 'tiles': [] },
-        { 'id': 6, 'title': '3x3" (7.5x7.5cm)', 'inches': 7.5, 'centimeters': 7.5, 'tiles': [] },
+        { 'id': 6, 'title': '3x3" (7.5x7.5cm)', 'inches': 7, 'centimeters': 7.5, 'tiles': [] },
     ]);
 

@@ -1,10 +1,10 @@
-<ul layout="row" class="tile-collection" layout-align="space-between end" layout-margin>
-    <li class="tile-collection-item" ng-repeat="item in $ctrl.getCollectionsTiles()" md-whiteframe="1" flex="50" flex-gt-md="16">
+<div layout="row" class="tile-collection" layout-align="center start" layout-margin layout-wrap>
+    <div class="tile-collection-item" ng-repeat="item in $ctrl.getCollectionTiles()" md-whiteframe="1" flex="15" flex-xs="70" flex-sm="45" flex-md="30">
         <a href="#" title="{{ ::item.title }}" class="tile-content" ng-click="$ctrl.selectCollectionTiles(item.id)">
             <div class="tile-body">
                 <div class="tile-size size-{{ ::item.centimeters }}"></div>
             </div>
             <h3 class="tile-title" ng-bind="::item.title"></h3>
         </a>
-    </li>
-</ul>
+    </div>
+</div>

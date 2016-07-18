@@ -22,22 +22,22 @@
          * @type {Array<Any>}
          * @private
          */
-        var _collectionsTiles = [];
+        var _collectionTiles = [];
 
         /**
          *
          * @returns {*}
          */
-        function getCollectionsTiles() {
-            return angular.copy(_collectionsTiles);
+        function getCollectionTiles() {
+            return angular.copy(_collectionTiles);
         };
 
         /**
          *
          * @param collectionTiles
          */
-        function setCollectionsTiles(collectionsTiles) {
-            _collectionsTiles = collectionsTiles;
+        function setCollectionTiles(collectionTiles) {
+            _collectionTiles = collectionTiles;
         }
 
         /**
@@ -52,7 +52,7 @@
          *
          * @param selectedCollectionTile
          */
-        function setSelectedColecciontTile(selectedCollectionTile) {
+        function setSelectedColeccionTile(selectedCollectionTile) {
             _selectedCollectionTile = selectedCollectionTile;
         }
 
@@ -74,11 +74,11 @@
 
         var service = {
             getSelectedCollectionTile: getSelectedCollectionTile,
-            setSelectedCollectionTile: setSelectedColecciontTile,
+            setSelectedCollectionTile: setSelectedColeccionTile,
             getSelectedTiles: getSelectedTiles,
             setSelectedTile: setSelectedTiles,
-            getCollectionsTiles: getCollectionsTiles,
-            setCollectionsTiles: setCollectionsTiles
+            getCollectionTiles: getCollectionTiles,
+            setCollectionTiles: setCollectionTiles
         };
 
         return service;
