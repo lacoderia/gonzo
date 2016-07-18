@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function tileSetController(TILE_SET_ITEMS) {
+    function tileSetController(tileSetService) {
 
         /**
          *
@@ -9,8 +9,13 @@
          */
         var ctrl = this;
 
-        ctrl.getTileSetItems = function () {
-            return TILE_SET_ITEMS;
+        ctrl.getCollectionsTiles = function () {
+            console.log('ENTR A GET COLLECTIONS')
+            //return tileSetService.getCollectionsTiles();
+        };
+
+        ctrl.selectCollectionTiles = function(collectionId) {
+
         };
 
     }

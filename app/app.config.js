@@ -6,21 +6,21 @@ angular.
         function config($mdThemingProvider, localStorageServiceProvider) {
             $mdThemingProvider.theme('default')
                 .primaryPalette('light-green')
-                .accentPalette('lime');
+                .accentPalette('blue');
 
             localStorageServiceProvider.setPrefix('');
             localStorageServiceProvider.setStorageCookie(45, '/');
             localStorageServiceProvider.setStorageCookieDomain('');
 
     }]);
-
+//'assets/images/collection-tiles/Amalia 12x12.svg'
 angular.module('omtApp')
     .constant('TILE_SET_ITEMS', [
-        { 'code': 1, 'title': '12x12" (30x30cm)', 'sizeClass': 'size-30' },
-        { 'code': 2, 'title': '10x10" (25x25cm)', 'sizeClass': 'size-25' },
-        { 'code': 3, 'title': '8x8" (20x20cm)', 'sizeClass': 'size-20' },
-        { 'code': 4, 'title': '6x6" (15x15cm)', 'sizeClass': 'size-15' },
-        { 'code': 5, 'title': '4x4" (10x10cm)', 'sizeClass': 'size-10' },
-        { 'code': 6, 'title': '3x3" (7.5x7.5cm)', 'sizeClass': 'size-7' }
+        { 'id': 1, 'title': '12x12" (30x30cm)', 'inches': 12, 'centimeters': 30, 'tiles': [] },
+        { 'id': 2, 'title': '10x10" (25x25cm)', 'inches': 10, 'centimeters': 25, 'tiles': [] },
+        { 'id': 3, 'title': '8x8" (20x20cm)', 'inches': 8, 'centimeters': 20, 'tiles': [] },
+        { 'id': 4, 'title': '6x6" (15x15cm)', 'inches': 6, 'centimeters': 15, 'tiles': [] },
+        { 'id': 5, 'title': '4x4" (10x10cm)', 'inches': 4, 'centimeters': 10, 'tiles': [] },
+        { 'id': 6, 'title': '3x3" (7.5x7.5cm)', 'inches': 7.5, 'centimeters': 7.5, 'tiles': [] },
     ]);
 

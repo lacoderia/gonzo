@@ -1,6 +1,10 @@
-<md-grid-list class="tile-collection" md-gutter="2em" md-row-height="3:2" md-cols="4" md-cols-xs="1" md-cols-sm="2" md-cols-md="3">
-    <md-grid-tile class="tile-collection-item" ng-repeat="item in $ctrl.getTileSetItems()" >
-        <span class="tile-size {{ ::item.sizeClass }}"></span>
-        <h3 flex class="tile-title" ng-bind="::item.title"></h3>
-    </md-grid-tile>
-</md-grid-list>
+<ul layout="row" class="tile-collection" layout-align="space-between end" layout-margin>
+    <li class="tile-collection-item" ng-repeat="item in $ctrl.getCollectionsTiles()" md-whiteframe="1" flex="50" flex-gt-md="16">
+        <a href="#" title="{{ ::item.title }}" class="tile-content" ng-click="$ctrl.selectCollectionTiles(item.id)">
+            <div class="tile-body">
+                <div class="tile-size size-{{ ::item.centimeters }}"></div>
+            </div>
+            <h3 class="tile-title" ng-bind="::item.title"></h3>
+        </a>
+    </li>
+</ul>

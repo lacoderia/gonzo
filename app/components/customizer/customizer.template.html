@@ -1,7 +1,11 @@
 <md-steppers flex layout-fill md-stretch-steppers="always">
     <md-step label="Select the tile size set" md-complete="step1.completed" ng-disabled="step1.disabled">
         <md-content flex md-scroll-y layout-fill class="tile-set-content">
-            <tile-set layout="row" layout-align="start end" layout-padding flex></tile-set>
+            <div class="step-content">
+                <h2 layout="row" class="md-display-1">1. Size selector</h2>
+                <p layout="row">Select the collection of sizes to see the tiles available on each collection:</p>
+                <tile-set></tile-set>
+            </div>
         </md-content>
     </md-step>
     <md-step label="Customize your tile pattern" md-complete="$ctrl.steps.step2.completed"  ng-disabled="$ctrl.steps.step2.disabled">

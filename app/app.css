@@ -1,53 +1,69 @@
+/* */
 md-step-content > div {
   height: 100%; }
 
-md-toolbar h2 {
+.step-content {
+  padding: 2rem; }
+
+md-toolbar h1 {
   color: white;
   font-weight: bold; }
 
 .tile-set-content {
-  background: #EEEDED; }
+  background: #F5F5F5; }
 
-tile-set .tile-collection {
-  width: 100%; }
-tile-set .tile-collection-item {
-  background: white;
-  cursor: pointer;
-  text-align: center; }
-  tile-set .tile-collection-item:hover {
-    background: #DCEDC8; }
-  tile-set .tile-collection-item .tile-size {
-    background: #8BC34A;
-    display: inline-block; }
-    tile-set .tile-collection-item .tile-size.size-30 {
-      height: 120px;
-      width: 120px; }
-    tile-set .tile-collection-item .tile-size.size-25 {
-      height: 100px;
-      width: 100px; }
-    tile-set .tile-collection-item .tile-size.size-20 {
-      height: 80px;
-      width: 80px; }
-    tile-set .tile-collection-item .tile-size.size-15 {
-      height: 60px;
-      width: 60px; }
-    tile-set .tile-collection-item .tile-size.size-10 {
-      height: 40px;
-      width: 40px; }
-    tile-set .tile-collection-item .tile-size.size-7 {
-      height: 28px;
-      width: 28px; }
-  tile-set .tile-collection-item .tile-title {
-    background: #F4F4F4;
-    bottom: 0;
-    display: block;
-    font-size: 1.2rem;
-    left: 0;
+tile-set {
+  margin: 2rem 0; }
+  tile-set .tile-collection {
+    list-style: none;
     margin: 0;
-    overflow: hidden;
-    padding: 0.6rem;
-    position: absolute;
-    text-align: center !important;
+    padding: 0;
     width: 100%; }
+    tile-set .tile-collection .tile-collection-item {
+      background: white;
+      cursor: pointer;
+      padding: 0;
+      text-align: center; }
+      tile-set .tile-collection .tile-collection-item a.tile-content {
+        box-sizing: border-box;
+        display: block;
+        padding: 1.5rem 0;
+        text-decoration: none; }
+        tile-set .tile-collection .tile-collection-item a.tile-content .tile-body {
+          align-items: center;
+          display: flex;
+          margin: 0;
+          min-height: 80px;
+          padding: 0;
+          width: 100%; }
+        tile-set .tile-collection .tile-collection-item a.tile-content .tile-size {
+          background: #2196F3;
+          margin: 0 auto; }
+          tile-set .tile-collection .tile-collection-item a.tile-content .tile-size.size-30 {
+            height: 80px;
+            width: 80px; }
+          tile-set .tile-collection .tile-collection-item a.tile-content .tile-size.size-25 {
+            height: 70px;
+            width: 70px; }
+          tile-set .tile-collection .tile-collection-item a.tile-content .tile-size.size-20 {
+            height: 60px;
+            width: 60px; }
+          tile-set .tile-collection .tile-collection-item a.tile-content .tile-size.size-15 {
+            height: 50px;
+            width: 50px; }
+          tile-set .tile-collection .tile-collection-item a.tile-content .tile-size.size-10 {
+            height: 40px;
+            width: 40px; }
+          tile-set .tile-collection .tile-collection-item a.tile-content .tile-size.size-7 {
+            height: 28px;
+            width: 28px; }
+        tile-set .tile-collection .tile-collection-item a.tile-content .tile-title {
+          color: #9E9E9E;
+          font-size: 0.9rem;
+          margin: 1rem 0 0;
+          padding: 0 1rem; }
+
+h2 {
+  margin: 0; }
 
 /*# sourceMappingURL=app.css.map */

@@ -1,55 +1,68 @@
 .tile-set-content
-  background: $color-gray-1
+  background: $color-gray-100
 
 tile-set
+  margin: 2rem 0
+
   .tile-collection
+    list-style: none
+    margin: 0
+    padding: 0
     width: 100%
 
-  .tile-collection-item
-    background: white
-    cursor: pointer
-    text-align: center
+    .tile-collection-item
+      background: white
+      cursor: pointer
+      padding: 0
+      text-align: center
 
-    &:hover
-      background: #DCEDC8
+      a.tile-content
+        box-sizing: border-box
+        display: block
+        padding: 1.5rem 0
+        text-decoration: none
 
-    .tile-size
-      background: #8BC34A
-      display: inline-block
+        .tile-body
+          align-items: center
+          display: flex
+          margin: 0
+          min-height: 80px
+          padding: 0
+          width: 100%
 
-      &.size-30
-        height: 120px
-        width: 120px
+        .tile-size
+          background: $color-blue-500
+          margin: 0 auto
 
-      &.size-25
-        height: 100px
-        width: 100px
+          &.size-30
+            height: 80px
+            width: 80px
 
-      &.size-20
-        height: 80px
-        width: 80px
+          &.size-25
+            height: 70px
+            width: 70px
 
-      &.size-15
-        height: 60px
-        width: 60px
+          &.size-20
+            height: 60px
+            width: 60px
 
-      &.size-10
-        height: 40px
-        width: 40px
+          &.size-15
+            height: 50px
+            width: 50px
 
-      &.size-7
-        height: 28px
-        width: 28px
+          &.size-10
+            height: 40px
+            width: 40px
 
-    .tile-title
-      background: $color-gray-2
-      bottom: 0
-      display: block
-      font-size: 1.2rem
-      left: 0
-      margin: 0
-      overflow: hidden
-      padding: 0.6rem
-      position: absolute
-      text-align: center !important
-      width: 100%
+          &.size-7
+            height: 28px
+            width: 28px
+
+        .tile-title
+          color: $color-gray-500
+          font-size: 0.9rem
+          margin: 1rem 0 0
+          padding: 0 1rem
+
+
+
