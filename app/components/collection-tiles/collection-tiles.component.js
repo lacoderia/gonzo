@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function collectionTilesController($scope, $mdBottomSheet, storeService, collectionTilesService) {
+    function collectionTilesController($scope, $mdBottomSheet, $mdToast, storeService, collectionTilesService) {
 
         /**
          *
@@ -67,7 +67,7 @@
             }).then(function(clickedItem) {
                 $mdToast.show(
                     $mdToast.simple()
-                        .textContent(clickedItem['name'] + ' clicked!')
+                        .textContent('¡Vamos bien!')
                         .position('top right')
                         .hideDelay(1500)
                 );
@@ -77,8 +77,8 @@
         /**
          *
          */
-        ctrl.endStep = function() {
-            console.log(ctrl.customizerCtrl.steps);
+        ctrl.completeStep = function() {
+            ctrl.customizerCtrl.submitCurrentStep(ctrl.customizerCtrl.stepData[0].data);
             $mdBottomSheet.hide();
         };
 
