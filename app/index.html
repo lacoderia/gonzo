@@ -24,7 +24,7 @@
 <body ng-cloak layout="column">
 
 <navigation></navigation>
-<customizer id="main" flex layout="column"></customizer>
+<div id="main" ng-view flex layout="column"></div>
 
 <!-- Angular libs -->
 <script src="bower_components/angular/angular.js"></script>
@@ -43,13 +43,24 @@
 <script src="app.module.js"></script>
 <script src="app.config.js"></script>
 
-<!-- Classes -->
-
-
-<!-- Store Service -->
+<!-- Application libs -->
 <script src="shared/services/store.service.js"></script>
+<script src="shared/services/session.service.js"></script>
+<script src="shared/services/routing.service.js"></script>
+
+<!-- Common Classes -->
+<script src="shared/classes/User.js"></script>
 
 <!-- Components -->
+
+<!-- Intro Component -->
+<script src="components/intro/intro.module.js"></script>
+<script src="components/intro/intro.component.js"></script>
+
+<!-- Login Component -->
+<script src="components/login/login.module.js"></script>
+<script src="components/login/login.component.js"></script>
+<script src="components/login/login.service.js"></script>
 
 <!-- Navigation Component -->
 <script src="components/navigation/navigation.module.js"></script>
