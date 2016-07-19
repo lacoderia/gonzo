@@ -5,9 +5,34 @@ md-step-content > div {
 .step-content {
   padding: 2rem; }
 
-md-toolbar h1 {
+.intro-component {
+  height: 100%; }
+
+.login-component {
+  left: 50%;
+  max-width: 320px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; }
+  .login-component hgroup {
+    display: block; }
+    .login-component hgroup img {
+      max-width: 26px;
+      width: 100%; }
+  .login-component .login-component {
+    width: 100%; }
+    .login-component .login-component form {
+      width: 100%; }
+
+.navigation-component h1 {
+  color: white; }
+.navigation-component .header img,
+.navigation-component .header h2 {
+  display: inline-block; }
+.navigation-component .header .menu-item {
   color: white;
-  font-weight: bold; }
+  cursor: pointer; }
 
 .tile-selector-list {
   overflow-x: scroll; }
