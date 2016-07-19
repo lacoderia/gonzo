@@ -69,6 +69,35 @@ collection-tiles {
   left: 0;
   right: 0; }
 
+collection-grids {
+  margin: 2rem 0; }
+  collection-grids .grid-collection .grid-collection-item {
+    background: white;
+    cursor: pointer;
+    padding: 0;
+    text-align: center; }
+    collection-grids .grid-collection .grid-collection-item a.grid-content {
+      box-sizing: border-box;
+      display: block;
+      padding: 1.5rem;
+      text-decoration: none; }
+      collection-grids .grid-collection .grid-collection-item a.grid-content .grid-body {
+        max-height: 100px;
+        width: auto; }
+        collection-grids .grid-collection .grid-collection-item a.grid-content .grid-body img {
+          max-height: 100px;
+          width: 100%; }
+      collection-grids .grid-collection .grid-collection-item a.grid-content .grid-title {
+        color: #9E9E9E;
+        font-size: 0.9rem;
+        margin: 1rem 0 0;
+        padding: 0 1rem; }
+
+tile-customizer .tile-customizer {
+  background: white; }
+  tile-customizer .tile-customizer .selected-tiles .tile {
+    border: 1px solid #BDBDBD; }
+
 h2 {
   margin: 0; }
 

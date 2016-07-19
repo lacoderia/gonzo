@@ -27,9 +27,9 @@
          *
          * @param idCollection
          */
-        function selectCollectionTiles(idCollection) {
+        function selectCollectionTiles(collectionId) {
             var collections = _collectionTiles.filter(function(item) {
-               return item.id == idCollection;
+               return item.id == collectionId;
             });
 
             if(collections || collections.length > 0){
