@@ -84,10 +84,10 @@ angular.
                     resolve: authenticate,
                     view: 'login'
                 }).
-                when('/todo', {
+                when('/customizer', {
                     template: '<customizer layout-fill layout="column" flex></customizer>',
                     resolve: authenticate,
-                    view: 'todo'
+                    view: 'customizer'
                 }).
                 otherwise('/intro');
     }])
