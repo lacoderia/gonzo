@@ -1,31 +1,31 @@
 (function(angular) {
     'use strict';
 
-    function collectionTilesController($scope, $mdBottomSheet, $mdToast, storeService, collectionTilesService) {
+    function collectionTilesController($scope, $mdBottomSheet, $mdToast, collectionTilesService) {
 
         /**
          *
          * @type {Object}
          */
         var ctrl = this;
-
-        var _tiles = [];
+        var _collectionTiles;
+        var _tiles;
+        var _selectedTiles;
         /**
          *
          * @returns {*}
          */
-        ctrl.getCollectionTiles = function() {
-            return collectionTilesService.getCollectionsTiles();
+        ctrl.getCollectionTiles = function(){
+            return _collectionTiles;
         };
 
         /**
          *
          * @param collectionId
          */
-        ctrl.selectCollectionTiles = function(collectionId) {
+        ctrl.selectCollectionTiles = function(collectionId){
             collectionTilesService.selectCollectionTiles(collectionId);
-            _tiles = storeService.getSelectedCollectionTile().tiles;
-
+            _tiles = collectionTilesService.getSelectedCollectionTiles().tiles;
             showGridBottomSheet();
         };
 
@@ -33,7 +33,15 @@
          *
          * @returns {*}
          */
-        ctrl.getSelectedCollectionTile = function() {
+        ctrl.getSelectedTiles = function(){
+            return _tiles;
+        };
+
+        /**
+         *
+         * @returns {*}
+         */
+        ctrl.getTiles = function() {
             return _tiles;
         };
 
@@ -86,8 +94,8 @@
          *
          */
         ctrl.init = function() {
-            _tiles = (storeService.getSelectedCollectionTile())? storeService.getSelectedCollectionTile().tiles : [];
-        }
+            _collectionTiles = collectionTilesService.getCollectionTiles();
+        };
 
     }
 

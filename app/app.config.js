@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('omtApp')
-    .constant('TILE_SET_ITEMS', [
+    .constant('COLLECTION_TILES_ITEMS', [
         { 'id': 1, 'title': '12x12" (30x30cm)', 'inches': 12, 'centimeters': 30, 'tiles': [{id: 1, url: 'assets/images/collection-tiles/Amalia 12x12.svg', selected: true}, {id: 2, url: 'assets/images/collection-tiles/Amalia 12x12.svg'}, {id: 1, url: 'assets/images/collection-tiles/Amalia 12x12.svg'}, {id: 2, url: 'assets/images/collection-tiles/Amalia 12x12.svg'}, {id: 1, url: 'assets/images/collection-tiles/Amalia 12x12.svg'}, {id: 2, url: 'assets/images/collection-tiles/Amalia 12x12.svg'}, {id: 1, url: 'assets/images/collection-tiles/Amalia 12x12.svg'}, {id: 2, url: 'assets/images/collection-tiles/Amalia 12x12.svg'}] },
         { 'id': 2, 'title': '10x10" (25x25cm)', 'inches': 10, 'centimeters': 25, 'tiles': [] },
         { 'id': 3, 'title': '8x8" (20x20cm)', 'inches': 8, 'centimeters': 20, 'tiles': [] },

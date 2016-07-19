@@ -5,6 +5,11 @@ md-step-content > div {
 .step-content {
   padding: 2rem; }
 
+.step-action {
+  bottom: 8px;
+  position: fixed;
+  right: 8px; }
+
 md-toolbar h1 {
   color: white;
   font-weight: bold; }
@@ -61,13 +66,32 @@ collection-tiles {
         margin: 1rem 0 0;
         padding: 0 1rem; }
 
-.selected .selected-overlay {
-  background: rgba(137, 197, 65, 0.5);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0; }
+.tile-bottom-sheet .tile-item {
+  cursor: pointer;
+  position: relative; }
+  .tile-bottom-sheet .tile-item .selected-overlay {
+    background: #AED581;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity 0.2s; }
+  .tile-bottom-sheet .tile-item .selected-icon {
+    bottom: 10px;
+    color: #8BC34A;
+    content: "";
+    height: 20px;
+    opacity: 0;
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    transition: opacity 0.2s; }
+  .tile-bottom-sheet .tile-item.selected .selected-overlay {
+    opacity: 0.1; }
+  .tile-bottom-sheet .tile-item.selected .selected-icon {
+    opacity: 1; }
 
 collection-grids {
   margin: 2rem 0; }

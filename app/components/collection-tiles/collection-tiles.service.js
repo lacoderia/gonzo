@@ -1,11 +1,11 @@
 (function(angular) {
     'use strict';
 
-    angular.module('omtApp').factory('collectionTilesService', ['storeService', 'TILE_SET_ITEMS', function (storeService, TILE_SET_ITEMS) {
+    angular.module('omtApp').factory('collectionTilesService', ['COLLECTION_TILES_ITEMS', function (COLLECTION_TILES_ITEMS) {
 
-        init();
-
-        var _collectionTiles = storeService.getCollectionTiles();
+        var _collectionTiles;
+        var _selectedCollection;
+        var _selectedTiles;
 
         /**
          *
@@ -19,8 +19,9 @@
          *
          * @returns {*}
          */
-        function getCollectionsTiles() {
-            return _collectionTiles;
+        function getCollectionTiles() {
+            _collectionTiles = COLLECTION_TILES_ITEMS; // TODO: Delete this line when service is available
+            return angular.copy(_collectionTiles);
         }
 
         /**
@@ -33,23 +34,38 @@
             });
 
             if(collections || collections.length > 0){
-                storeService.setSelectedCollectionTile(collections[0]);
+                _selectedCollection = collections[0];
             }
+        }
+
+        function getSelectedCollectionTiles() {
+            return angular.copy(_selectedCollection);
+        };
+
+        /**
+         *
+         * @returns {*}
+         */
+        function getSelectedTiles() {
+            return angular.copy(_selectedTiles);
         }
 
         /**
          *
+         * @param selectedTiles
          */
-        function init(){
-            if(TILE_SET_ITEMS.length > 0){
-                storeService.setCollectionTiles(TILE_SET_ITEMS);
-            }
+        function setSelectedTiles(selectedTiles) {
+            _selectedTiles = selectedTiles;
         }
+
         
         var service = {
             callCollectionTiles: callCollectionTiles,
-            getCollectionsTiles: getCollectionsTiles,
-            selectCollectionTiles: selectCollectionTiles
+            getCollectionTiles: getCollectionTiles,
+            selectCollectionTiles: selectCollectionTiles,
+            getSelectedCollectionTiles: getSelectedCollectionTiles,
+            getSelectedTiles: getSelectedTiles,
+            setSelectedTiles: setSelectedTiles
         };
 
         return service;

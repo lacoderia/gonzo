@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function collectionGridsController($scope, $mdBottomSheet, collectionGrids) {
+    function collectionGridsController($scope, collectionGrids) {
 
         /**
          *
@@ -35,11 +35,17 @@
         /**
          *
          */
-        var init = function() {
-            _grids = collectionGrids.getCollectionGrids();
+        ctrl.completeStep = function() {
+            ctrl.customizerCtrl.submitCurrentStep(ctrl.customizerCtrl.stepData[1].data);
         };
 
-        init();
+
+        /**
+         *
+         */
+        ctrl.init = function() {
+            _grids = collectionGrids.getCollectionGrids();
+        };
 
     }
 
