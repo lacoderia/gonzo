@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function loginController($location, loginService) {
+    function loginController($timeout, $location, loginService, routingService) {
 
         /**
          *
@@ -24,7 +24,7 @@
 
         // Object that holds the username and password values
         ctrl.credentials = {
-            nickname: '',
+            email: '',
             password: undefined
         };
 
@@ -34,7 +34,7 @@
             lastName: undefined,
             email: '',
             password: '',
-            passwordConfirmation: ''
+            confirmation: ''
         };
 
         // Object that holds the recover password data
@@ -45,7 +45,7 @@
         // Object that holds the recover password data
         ctrl.reset = {
             password: undefined,
-            passwordConfirmation: undefined
+            confirmation: undefined
         };
 
         // Private variables
@@ -73,23 +73,23 @@
             switch(formName){
                 case 'login':
                     ctrl.credentials = angular.copy(originalCredentials);
-                    ctrl.loginForm.$setPristine();
-                    ctrl.loginForm.$setUntouched();
+                    //ctrl.loginForm.$setPristine();
+                    //ctrl.loginForm.$setUntouched();
                     break;
                 case 'signup':
                     ctrl.newUser = angular.copy(originalNewUser);
-                    ctrl.signupForm.$setPristine();
-                    ctrl.signupForm.$setUntouched();
+                    //ctrl.signupForm.$setPristine();
+                    //ctrl.signupForm.$setUntouched();
                     break;
                 case 'forgot':
                     ctrl.forgot = angular.copy(originalForgot);
-                    ctrl.forgotForm.$setPristine();
-                    ctrl.forgotForm.$setUntouched();
+                    //ctrl.forgotForm.$setPristine();
+                    //ctrl.forgotForm.$setUntouched();
                     break;
                 case 'reset':
                     ctrl.reset = angular.copy(originalReset);
-                    ctrl.resetForm.$setPristine();
-                    ctrl.resetForm.$setUntouched();
+                    //ctrl.resetForm.$setPristine();
+                    //ctrl.resetForm.$setUntouched();
                     break;
                 default:
                     break;
@@ -127,12 +127,12 @@
                 last_name: ctrl.newUser.lastName,
                 email: ctrl.newUser.email,
                 password: ctrl.newUser.password,
-                password_confirmation: ctrl.newUser.passwordConfirmation
+                password_confirmation: ctrl.newUser.confirmation
             };
 
             if(ctrl.signupForm.$valid) {
 
-                LoginService.signUp(user)
+                loginService.signUp(user)
                     .then(function(data) {
 
                     }, function(error) {
@@ -150,7 +150,7 @@
 
             if(ctrl.forgotForm.$valid) {
 
-                LoginService.recoverPassword(ctrl.forgot)
+                loginService.recoverPassword(ctrl.forgot)
                     .then(function(data) {
 
                     }, function(error) {
@@ -169,12 +169,12 @@
             var reset = {
                 reset_password_token: resetToken,
                 password: ctrl.reset.password,
-                password_confirmation: ctrl.reset.passwordConfirmation
+                password_confirmation: ctrl.reset.confirmation
             };
 
             if(ctrl.resetForm.$valid) {
 
-                LoginService.resetPassword(reset)
+                loginService.resetPassword(reset)
                     .then(function(data) {
 
                     }, function(error) {
@@ -183,6 +183,15 @@
                         }
                     });
             }
+        };
+
+        this.$onInit = function() {
+            resetToken = routingService.getParam('reset_password_token');
+            $timeout(function(){
+                if (resetToken) {
+                    ctrl.changeView(ctrl.VIEWS.RESET);
+                }
+            }, 0);
         };
 
     }

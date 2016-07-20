@@ -4,6 +4,7 @@
 angular.module('omtApp', [
     'ngRoute',
     'ngResource',
+    'ngMessages',
     'ngMaterial',
     'md-steppers',
     'LocalStorageModule',

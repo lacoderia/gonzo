@@ -13,9 +13,26 @@
             _view = view;
         };
 
+        var getParam = function(param) {
+            var vars = {};
+
+            window.location.href.replace(
+                /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+                function( m, key, value ) { // callback
+                    vars[key] = value !== undefined ? value : '';
+                }
+            );
+
+            if ( param ) {
+                return vars[param] ? vars[param] : null;
+            }
+            return vars;
+        };
+
         var service = {
             getView: getView,
-            setView: setView
+            setView: setView,
+            getParam: getParam
         };
 
         return service;
