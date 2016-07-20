@@ -3,7 +3,7 @@
 
     'use strict';
 
-    angular.module('omtApp').provider('collectionGrids', ['COLLECTION_GRID_ITEMS', function (COLLECTION_GRID_ITEMS) {
+    angular.module('omtApp').provider('collectionGrids', [function () {
 
         /**
          * Collection grids array
@@ -20,7 +20,7 @@
          * @returns {*}
          */
         function getCollectionGrids() {
-            return _collectionGrids;
+            return angular.copy(_collectionGrids);
         }
 
         /**

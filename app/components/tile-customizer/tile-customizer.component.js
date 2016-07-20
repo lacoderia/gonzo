@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function tileCustomizerController(COLLECTION_TILES_ITEMS, $http) {
+    function tileCustomizerController($http) {
 
         /**
          *
@@ -18,8 +18,7 @@
          * @returns {Array}
          */
         ctrl.getSelectedTiles = function() {
-            return COLLECTION_TILES_ITEMS[0].tiles;
-            //return _selectedTiles;
+            return _selectedTiles;
         };
 
         /**

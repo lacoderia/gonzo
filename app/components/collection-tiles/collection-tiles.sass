@@ -16,6 +16,7 @@ collection-tiles
         box-sizing: border-box
         display: block
         padding: 1.5rem 0
+        position: relative
         text-decoration: none
 
         .tile-body
@@ -60,6 +61,37 @@ collection-tiles
           margin: 1rem 0 0
           padding: 0 1rem
 
+      .selected-overlay
+        background: $color-light-green-300
+        bottom: 0
+        display: none
+        left: 0
+        opacity: 0
+        position: absolute
+        right: 0
+        top: 0
+        transition: opacity 0.2s
+
+      .selected-icon
+        bottom: 10px
+        color: $color-light-green-500
+        content: ""
+        height: 20px
+        opacity: 0
+        position: absolute
+        right: 10px
+        width: 20px
+        transition: opacity 0.2s
+
+      &.selected
+
+        .selected-overlay
+          display: block
+          opacity: 0.1
+
+        .selected-icon
+          opacity: 1
+
 
 
 .tile-bottom-sheet
@@ -70,6 +102,7 @@ collection-tiles
     .selected-overlay
       background: $color-light-green-300
       bottom: 0
+      display: none
       left: 0
       opacity: 0
       position: absolute
@@ -91,6 +124,7 @@ collection-tiles
     &.selected
 
       .selected-overlay
+        display: block
         opacity: 0.1
 
       .selected-icon

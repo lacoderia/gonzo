@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    angular.module('omtApp').factory('collectionGridsService', ['storeService', 'COLLECTION_TILES_ITEMS', function (storeService, COLLECTION_TILES_ITEMS) {
+    angular.module('omtApp').factory('collectionGridsService', [function () {
 
         var service = {
 

@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function collectionTilesController($scope, $mdBottomSheet, $mdToast, collectionTilesService) {
+    function collectionTilesController($scope, $mdBottomSheet, $mdToast, collectionTilesService, utilsService) {
 
         /**
          *
@@ -10,7 +10,25 @@
         var ctrl = this;
         var _collectionTiles;
         var _tiles;
+        var _selectedCollectionTiles;
         var _selectedTiles;
+
+        /**
+         *
+         * @param tile
+         */
+        var selectTile = function(tile) {
+            _selectedTiles.push(tile);
+        };
+
+        /**
+         *
+         * @param tileId
+         */
+        var deselectTile = function(index) {
+            _selectedTiles.splice(index, 1);
+        };
+
         /**
          *
          * @returns {*}
@@ -21,20 +39,86 @@
 
         /**
          *
+         * @returns {*}
+         */
+        ctrl.getSelectedCollectionTiles = function() {
+            return _selectedCollectionTiles;
+        };
+
+        /**
+         *
          * @param collectionId
          */
         ctrl.selectCollectionTiles = function(collectionId){
-            collectionTilesService.selectCollectionTiles(collectionId);
-            _tiles = collectionTilesService.getSelectedCollectionTiles().tiles;
+            try{
+                _selectedTiles = undefined;
+                collectionTilesService.setSelectedCollectionTiles(collectionId);
+                _selectedCollectionTiles = collectionTilesService.getSelectedCollectionTiles();
+                _tiles = _selectedCollectionTiles.tiles;
+            }catch (error){
+                console.log(error);
+            }
             showGridBottomSheet();
+        };
+
+
+        /**
+         *
+         * @param collectionId
+         * @returns {boolean}
+         */
+        ctrl.isSelectedCollectionTiles = function(collectionId) {
+            if(_selectedCollectionTiles){
+                return (_selectedCollectionTiles.id == collectionId);
+            }
+            return false;
+        };
+
+        /**
+         *
+         */
+        ctrl.setSelectedTiles = function() {
+            collectionTilesService.setSelectedCollectionTiles(_selectedTiles);
+        };
+
+        /**
+         *
+         * @param tileId
+         * @returns {boolean}
+         */
+        ctrl.isSelectedTile = function (tileId){
+            for(var tileIndex=0; tileIndex<_selectedTiles.length; tileIndex++){
+                var tmpTile = _selectedTiles[tileIndex];
+                if(tmpTile.id == tileId){
+                    return true;
+                }
+            }
+            return false;
+            //console.log(utilsService.existItem(_selectedTiles, tileId));
+        };
+
+        /**
+         *
+         * @returns {boolean|*|Boolean}
+         */
+        ctrl.areSelectedTiles = function(){
+            return utilsService.isEmpty(_selectedTiles);
+        };
+
+        /**
+         *
+         * @returns {boolean}
+         */
+        ctrl.areSelectedCollections = function() {
+            return (_selectedCollectionTiles)? false : true;
         };
 
         /**
          *
          * @returns {*}
          */
-        ctrl.getSelectedTiles = function(){
-            return _tiles;
+        ctrl.getSelectedTiles = function () {
+            return _selectedTiles;
         };
 
         /**
@@ -45,21 +129,32 @@
             return _tiles;
         };
 
+
         /**
          *
          */
         var resetTiles = function() {
-            for(var i=0; i<_tiles.length; i++) {
-                _tiles[i].selected = false;
-            }
+            _selectedTiles = collectionTilesService.getSelectedTiles();
         };
 
         /**
          *
          */
         ctrl.toggleTile = function(tile) {
-            tile.selected = !tile.selected;
+            try{
+                for(var tileIndex=0; tileIndex<_selectedTiles.length; tileIndex++){
+                    var tmpTile = _selectedTiles[tileIndex];
+                    if(tmpTile.id == tile.id){
+                        deselectTile(tileIndex);
+                        return;
+                    }
+                }
+                selectTile(tile);
+            } catch(error){
+                console.log(error)
+            }
         };
+
 
         /**
          *
@@ -91,10 +186,15 @@
         };
 
         /**
-         *
+         * Inits the component
          */
         ctrl.init = function() {
-            _collectionTiles = collectionTilesService.getCollectionTiles();
+            collectionTilesService.callCollectionTiles().then(
+                function (){
+                    _collectionTiles = collectionTilesService.getCollectionTiles();
+                    _selectedTiles = collectionTilesService.getSelectedTiles();
+                }
+            );
         };
 
     }

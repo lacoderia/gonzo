@@ -1,17 +1,19 @@
 <h2 layout="row" class="md-display-1">1. Size selector</h2>
-<p layout="row">Select the collection of sizes to see the tiles available on each collection:</p>
+<p layout="row">Select the collection of sizes to see the tile design available on each collection:</p>
 <div layout="row" class="tile-collection" layout-align="center start" layout-margin layout-wrap ng-init="$ctrl.init()">
-    <div class="tile-collection-item" ng-repeat="item in $ctrl.getCollectionTiles()" md-whiteframe="1" flex="15" flex-xs="70" flex-sm="45" flex-md="30">
+    <div class="tile-collection-item" ng-repeat="item in $ctrl.getCollectionTiles()" ng-class="{ true:'selected', false:'' }[$ctrl.isSelectedCollectionTiles(item.id)]" md-whiteframe="1" flex="15" flex-xs="70" flex-sm="45" flex-md="30">
         <a title="{{ ::item.title }}" class="tile-content" ng-click="$ctrl.selectCollectionTiles(item.id)">
             <div class="tile-body">
                 <div class="tile-size size-{{ ::item.inches }}"></div>
             </div>
             <h3 class="tile-title" ng-bind="::item.title"></h3>
+            <div class="selected-overlay"></div>
+            <md-icon class="material-icons selected-icon">&#xE86C;</md-icon>
         </a>
     </div>
 </div>
 <div class="step-action" layout-sm="column" layout-wrap layout-margin>
-    <md-button ng-click="$ctrl.completeStep()">
+    <md-button ng-click="$ctrl.completeStep()" ng-disabled="$ctrl.areSelectedCollections()">
         Next <md-icon class="material-icons">&#xE409;</md-icon>
     </md-button>
 </div>
