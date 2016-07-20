@@ -2,7 +2,7 @@
 <p layout="row">Select the grid size you want:</p>
 <div layout="row" class="grid-collection" layout-align="center start" layout-margin layout-wrap ng-init="$ctrl.init()">
     <div class="grid-collection-item" ng-repeat="item in $ctrl.getCollectionGrids()" md-whiteframe="1" flex="20" flex-xs="40" flex-sm="45" flex-md="20">
-        <a href="#" title="{{ ::item.title }}" class="grid-content" ng-click="$ctrl.selectCollectionGrids(item.id)">
+        <a title="{{ ::item.title }}" class="grid-content" ng-click="$ctrl.selectCollectionGrids(item.id)">
             <div class="grid-body">
                 <img ng-src="{{ ::item.url }}">
             </div>
