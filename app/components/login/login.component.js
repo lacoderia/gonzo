@@ -24,7 +24,7 @@
 
         // Object that holds the username and password values
         ctrl.credentials = {
-            nickname: '',
+            email: '',
             password: undefined
         };
 
@@ -34,7 +34,7 @@
             lastName: undefined,
             email: '',
             password: '',
-            passwordConfirmation: ''
+            confirmation: ''
         };
 
         // Object that holds the recover password data
@@ -45,7 +45,7 @@
         // Object that holds the recover password data
         ctrl.reset = {
             password: undefined,
-            passwordConfirmation: undefined
+            confirmation: undefined
         };
 
         // Private variables

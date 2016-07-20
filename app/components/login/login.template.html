@@ -9,34 +9,16 @@
             <md-input-container class="md-block">
                 <label>Correo electrónico</label>
                 <input type="email" name="email" ng-model="$ctrl.credentials.email" required>
-                <div ng-messages="loginForm.email.$error">
+                <div ng-messages="loginForm.email.$error" md-auto-hide="false">
                     <div ng-message="required">El correo electrónico es requerido</div>
-                    <div ng-message="email">El correo electrónico es inválido</div>
                 </div>
             </md-input-container>
-
-
-            <!--div class="field">
-                <label for="emailAddress">Enter your email address:</label>
-                <input type="email" name="emailAddress" ng-model="$ctrl.credentials.email" required />
-
-                <div ng-messages="loginForm.emailAddress.$error">
-                    <div ng-message="required">
-                        You forgot to enter your email address...
-                    </div>
-                    <div ng-message="email">
-                        You did not enter your email address correctly...
-                    </div>
-                </div>
-            </div-->
-
-
-
             <md-input-container class="md-block">
                 <label>Contraseña</label>
-                <input type="password" name="password" ng-model="$ctrl.credentials.password" required>
-                <div ng-messages="$ctrl.loginForm.password.$error">
+                <input type="password" name="password" ng-model="$ctrl.credentials.password" minlength="8" required>
+                <div ng-messages="$ctrl.loginForm.password.$error" md-auto-hide="false">
                     <div ng-message="required">La contraseña es requerida</div>
+                    <div ng-message="minlength">El password debe tener una longitud mínima de 8 caracteres</div>
                 </div>
             </md-input-container>
             <md-input-container class="md-block">
@@ -59,21 +41,21 @@
             <md-input-container class="md-block">
                 <label>Nombre</label>
                 <input type="text" name="firstName" ng-model="$ctrl.newUser.firstName" required>
-                <div ng-messages="$ctrl.signupForm.firstName.$error">
+                <div ng-messages="$ctrl.signupForm.firstName.$error" md-auto-hide="false">
                     <div ng-message="required">El nombre es requerido</div>
                 </div>
             </md-input-container>
             <md-input-container class="md-block">
                 <label>Apellidos</label>
                 <input type="text" name="lastName" ng-model="$ctrl.newUser.lastName" required>
-                <div ng-messages="$ctrl.signupForm.lastName.$error">
+                <div ng-messages="$ctrl.signupForm.lastName.$error" md-auto-hide="false">
                     <div ng-message="required">Los apellidos son requeridos</div>
                 </div>
             </md-input-container>
             <md-input-container class="md-block">
                 <label>Correo electrónico</label>
                 <input type="email" name="email" ng-model="$ctrl.newUser.email" required>
-                <div ng-messages="$ctrl.signupForm.email.$error">
+                <div ng-messages="$ctrl.signupForm.email.$error" md-auto-hide="false">
                     <div ng-message="required">El correo electrónico es requerido</div>
                     <div ng-message="email">El correo electrónico es inválido</div>
                 </div>
@@ -81,15 +63,15 @@
             <md-input-container class="md-block">
                 <label>Contraseña</label>
                 <input type="password" name="password" ng-model="$ctrl.newUser.password" minlength="8" required>
-                <div ng-messages="$ctrl.signupForm.password.$error">
+                <div ng-messages="$ctrl.signupForm.password.$error" md-auto-hide="false">
                     <div ng-message="required">La contraseña es requerida</div>
                     <div ng-message="minlength">El password debe tener una longitud mínima de 8 caracteres</div>
                 </div>
             </md-input-container>
             <md-input-container class="md-block">
                 <label>Confirmar contraseña</label>
-                <input type="password" name="confirmation" ng-model="$ctrl.newUser.confirmation" required>
-                <div ng-messages="$ctrl.signupForm.confirmation.$error">
+                <input type="password" name="confirmation" ng-model="$ctrl.newUser.confirmation" pw-check="$ctrl.newUser.password" required>
+                <div ng-messages="$ctrl.signupForm.confirmation.$error" md-auto-hide="false">
                     <div ng-message="required">La confirmación de la contraseña es requerida</div>
                 </div>
             </md-input-container>
@@ -111,8 +93,8 @@
         <form name="$ctrl.forgotForm" ng-submit="$ctrl.recoverPassword()">
             <md-input-container class="md-block">
                 <label>Correo electrónico</label>
-                <input type="email" name="email" ng-model="$ctrl.newUser.email" required>
-                <div ng-messages="$ctrl.forgotForm.email.$error">
+                <input type="email" name="email" ng-model="$ctrl.forgot.email" required>
+                <div ng-messages="$ctrl.forgotForm.email.$error" md-auto-hide="false">
                     <div ng-message="required">El correo electrónico es requerido</div>
                     <div ng-message="email">El correo electrónico es inválido</div>
                 </div>
@@ -129,23 +111,25 @@
     <div class="reset-form" ng-if="$ctrl.isCurrentView($ctrl.VIEWS.RESET)">
         <hgroup>
             <h1>
-                Registro
+                Cambiar contraseña
             </h1>
         </hgroup>
         <form name="$ctrl.resetForm" ng-submit="$ctrl.resetPassword()">
             <md-input-container class="md-block">
                 <label>Contraseña</label>
-                <input type="password" name="password" ng-model="$ctrl.newUser.password" minlength="8" required>
-                <div ng-messages="$ctrl.resetForm.password.$error">
+                <input type="password" name="password" ng-model="$ctrl.reset.password" minlength="8" required>
+                <div class="hint" ng-show="!loginForm.email.$dirty">Al menos 8 caracteres</div>
+                <div ng-messages="$ctrl.resetForm.password.$error" md-auto-hide="false">
                     <div ng-message="required">La contraseña es requerida</div>
-                    <div ng-message="minlength">El password debe tener una longitud mínima de 8 caracteres</div>
+                    <div ng-message="minlength">La contraseña debe tener una longitud mínima de 8 caracteres</div>
                 </div>
             </md-input-container>
             <md-input-container class="md-block">
                 <label>Confirmar contraseña</label>
-                <input type="password" name="confirmation" ng-model="$ctrl.newUser.confirmation" required>
-                <div ng-messages="$ctrl.resetForm.confirmation.$error">
+                <input type="password" name="confirmation" ng-model="$ctrl.reset.confirmation" pw-check="$ctrl.reset.password" required>
+                <div ng-messages="$ctrl.resetForm.confirmation.$error" md-auto-hide="false">
                     <div ng-message="required">La confirmación de la contraseña es requerida</div>
+                    <div ng-message="pwCheck">La contraseña y la confirmación deben ser iguales</div>
                 </div>
             </md-input-container>
             <md-input-container class="md-block">
