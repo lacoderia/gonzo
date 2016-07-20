@@ -5,11 +5,11 @@
                 Iniciar sesión
             </h1>
         </hgroup>
-        <form name="loginForm" ng-submit="$ctrl.login()">
+        <form name="$ctrl.loginForm" ng-submit="$ctrl.login()">
             <md-input-container class="md-block">
                 <label>Correo electrónico</label>
                 <input type="email" name="email" ng-model="$ctrl.credentials.email" required>
-                <div ng-messages="loginForm.email.$error" md-auto-hide="false">
+                <div ng-messages="$ctrl.loginForm.email.$error" md-auto-hide="false">
                     <div ng-message="required">El correo electrónico es requerido</div>
                 </div>
             </md-input-container>
