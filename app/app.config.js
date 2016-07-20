@@ -40,7 +40,7 @@ angular.
                             if(data.user){
                                 deferred.resolve();
                                 if($location.path() == '/login' || $location.path() == '/intro'){
-                                    $location.path("/intro");
+                                    $location.path("/customizer");
                                 }
                             }else{
                                 if($location.path() == '/login'){
