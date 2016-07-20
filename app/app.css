@@ -147,6 +147,9 @@ tile-customizer .tile-customizer {
   tile-customizer .tile-customizer .selected-tiles .tile {
     border: 1px solid #BDBDBD; }
 
+#main {
+  overflow: scroll; }
+
 h2 {
   margin: 0; }
 

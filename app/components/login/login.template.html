@@ -5,19 +5,20 @@
                 Iniciar sesión
             </h1>
         </hgroup>
-        <form novalidate name="$ctrl.loginForm" ng-submit="$ctrl.login()">
+        <form name="$ctrl.loginForm" ng-submit="$ctrl.login()">
             <md-input-container class="md-block">
-                <label>Usuario</label>
-                <input type="email" name="loginEmail" ng-model="$ctrl.credentials.email" required>
-                <div ng-messages="$ctrl.loginForm.loginEmail.$error">
-                    <div ng-message="$ctrl.loginForm.loginEmail.$error.required">El correo electrónico es inválido</div>
+                <label>Correo electrónico</label>
+                <input type="email" name="email" ng-model="$ctrl.credentials.email" required>
+                <div ng-messages="$ctrl.loginForm.email.$error">
+                    <div ng-message="required">El correo electrónico es requerido</div>
+                    <div ng-message="email">El correo electrónico es inválido</div>
                 </div>
             </md-input-container>
             <md-input-container class="md-block">
                 <label>Contraseña</label>
-                <input type="password" name="loginPassword" ng-model="$ctrl.credentials.password" required>
-                <div ng-messages="$ctrl.loginForm.loginPassword.$error">
-                    <div ng-message="$ctrl.loginForm.loginPassword.$error.required">La contraseña es requerida</div>
+                <input type="password" name="password" ng-model="$ctrl.credentials.password" required>
+                <div ng-messages="$ctrl.loginForm.password.$error">
+                    <div ng-message="required">La contraseña es requerida</div>
                 </div>
             </md-input-container>
             <md-input-container class="md-block">
@@ -30,113 +31,112 @@
             </div>
         </form>
     </div>
-</section>
+    <div class="signup-form" ng-if="$ctrl.isCurrentView($ctrl.VIEWS.SIGNUP)">
+        <hgroup>
+            <h1>
+                Registro
+            </h1>
+        </hgroup>
+        <form name="$ctrl.signupForm" ng-submit="$ctrl.signUp()">
+            <md-input-container class="md-block">
+                <label>Nombre</label>
+                <input type="text" name="firstName" ng-model="$ctrl.newUser.firstName" required>
+                <div ng-messages="$ctrl.signupForm.firstName.$error">
+                    <div ng-message="required">El nombre es requerido</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Apellidos</label>
+                <input type="text" name="lastName" ng-model="$ctrl.newUser.lastName" required>
+                <div ng-messages="$ctrl.signupForm.lastName.$error">
+                    <div ng-message="required">Los apellidos son requeridos</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Correo electrónico</label>
+                <input type="email" name="email" ng-model="$ctrl.newUser.email" required>
+                <div ng-messages="$ctrl.signupForm.email.$error">
+                    <div ng-message="required">El correo electrónico es requerido</div>
+                    <div ng-message="email">El correo electrónico es inválido</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Contraseña</label>
+                <input type="password" name="password" ng-model="$ctrl.newUser.password" minlength="8" required>
+                <div ng-messages="$ctrl.signupForm.password.$error">
+                    <div ng-message="required">La contraseña es requerida</div>
+                    <div ng-message="minlength">El password debe tener una longitud mínima de 8 caracteres</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Confirmar contraseña</label>
+                <input type="password" name="confirmation" ng-model="$ctrl.newUser.confirmation" required>
+                <div ng-messages="$ctrl.signupForm.confirmation.$error">
+                    <div ng-message="required">La confirmación de la contraseña es requerida</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <md-button type='submit' class="md-raised md-primary">Registrar</md-button>
+            </md-input-container>
 
-
-
-<!--div ng-controller="LoginController as loginCtrl" ng-init="loginCtrl.init()">
-    <div id="overlay" ng-show="loginCtrl.isModalVisible()" ng-click="loginCtrl.hideModal()"></div>
-    <div id="login-component" ng-show="loginCtrl.isModalVisible()">
-        <span us-spinner spinner-key="login-spinner"></span>
-        <div class="login-container" ng-show="loginCtrl.isCurrentView(loginCtrl.VIEWS.LOGIN) || loginCtrl.isCurrentView(loginCtrl.VIEWS.SIGNUP)">
-            <div class="signup-form" ng-show="loginCtrl.isCurrentView(loginCtrl.VIEWS.SIGNUP)">
-                <h2 class="section-title">Registrarte a NBici</h2>
-                <form novalidate name="loginCtrl.signupForm" class="form" ng-submit="loginCtrl.signUp()">
-                    <fieldset>
-                        <span ng-show="loginCtrl.formErrorMessage" class="required-message error-message ">{{ loginCtrl.formErrorMessage }}</span>
-                        <div ng-show="loginCtrl.signupForm.$submitted || loginCtrl.signupForm.signupFirstName.$touched">
-                            <span class="required-message message-input" ng-show="loginCtrl.signupForm.signupFirstName.$error.required">El nombre es requerido.</span>
-                        </div>
-                        <input type="text" placeholder="nombres" name="signupFirstName" ng-model="loginCtrl.newUser.firstName" required>
-                        <div class="required-message" ng-show="loginCtrl.signupForm.$submitted || loginCtrl.signupForm.signupLastName.$touched">
-                            <span ng-show="loginCtrl.signupForm.signupLastName.$error.required">Los apellidos son requeridos.</span>
-                        </div>
-                        <input type="text" placeholder="apellidos" name="signupLastName" ng-model="loginCtrl.newUser.lastName" required>
-                        <div class="required-message" ng-show="loginCtrl.signupForm.$submitted || loginCtrl.signupForm.signupEmail.$touched">
-                            <span ng-show="loginCtrl.signupForm.signupEmail.$error.required">El correo electrónico es requerido.</span>
-                            <span ng-show="loginCtrl.signupForm.signupEmail.$error.email">El correo electrónico no es válido.</span>
-                        </div>
-                        <input type="email" placeholder="correo electrónico" name="signupEmail" ng-model="loginCtrl.newUser.email" required>
-                        <div class="required-message" ng-show="loginCtrl.signupForm.$submitted || loginCtrl.signupForm.signupPassword.$touched">
-                            <div ng-show="loginCtrl.signupForm.signupPassword.$error.required">El password es requerido.</div>
-                            <div ng-show="loginCtrl.signupForm.signupPassword.$error.minlength">El password debe tener una longitud mínima de 8 caracteres.</div>
-                        </div>
-                        <input type="password" placeholder="password" name="signupPassword" ng-model="loginCtrl.newUser.password" minlength="8" required>
-                        <div class="required-message" ng-show="loginCtrl.signupForm.$submitted || loginCtrl.signupForm.signupConfirmation.$touched">
-                            <div ng-show="loginCtrl.signupForm.signupConfirmation.$error.required">La confirmación del password es requerida.</div>
-                            <div ng-show="loginCtrl.signupForm.signupConfirmation.$error.pwCheck && !loginCtrl.signupForm.signupConfirmation.$error.required">El password y la confirmación deben ser iguales.</div>
-                        </div>
-                        <input type="password" placeholder="confirmar password" name="signupConfirmation" ng-model="loginCtrl.newUser.passwordConfirmation" pw-check="loginCtrl.newUser.password" required>
-                    </fieldset>
-                    <fieldset>
-                        <button class="button-login">registrar</button>
-                        <a href="" ng-click="loginCtrl.changeView(loginCtrl.VIEWS.LOGIN)">¿Ya eres socio y tienes una cuenta registrada?</a>
-                    </fieldset>
-                </form>
+            <div>
+                <a href="" ng-click="$ctrl.changeView($ctrl.VIEWS.LOGIN)">¿Ya eres socio y tienes una cuenta registrada?</a>
             </div>
-            <div class="login-form" ng-show="loginCtrl.isCurrentView(loginCtrl.VIEWS.LOGIN)">
-                <form novalidate name="loginCtrl.loginForm" class="form" ng-submit="loginCtrl.login()">
-                    <fieldset>
-                        <span ng-show="loginCtrl.formErrorMessage" class="required-message error-message">{{ loginCtrl.formErrorMessage }}</span>
-                        <div class="required-message" ng-show="loginCtrl.loginForm.$submitted || loginCtrl.loginForm.loginEmail.$touched">
-                            <span ng-show="loginCtrl.loginForm.loginEmail.$error.required">El correo electrónico es requerido.</span>
-                            <span ng-show="loginCtrl.loginForm.loginEmail.$error.email">El correo electrónico no es válido.</span>
-                        </div>
-                        <input type="email" placeholder="correo electrónico" name="loginEmail" ng-model="loginCtrl.credentials.email" required>
-                        <div class="required-message" ng-show="loginCtrl.loginForm.$submitted || loginCtrl.loginForm.loginPassword.$touched">
-                            <div ng-show="loginCtrl.loginForm.loginPassword.$error.required">El password es requerido.</div>
-                        </div>
-                        <input type="password" placeholder="password" name="loginPassword" ng-model="loginCtrl.credentials.password" required>
-                    </fieldset>
-                    <fieldset>
-                        <button class="button-login">iniciar sesión</button>
-                        <div>
-                            <a href="" ng-click="loginCtrl.changeView(loginCtrl.VIEWS.SIGNUP)">¿Eres nuevo y no tienes una cuenta?</a>
-                            <a href="" ng-click="loginCtrl.changeView(loginCtrl.VIEWS.FORGOT)">¿Olvidaste tu contraseña?</a>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-        <div class="forgot-container" ng-show="loginCtrl.isCurrentView(loginCtrl.VIEWS.FORGOT) || loginCtrl.isCurrentView(loginCtrl.VIEWS.RESET)">
-            <div class="forgot-form" ng-show="loginCtrl.isCurrentView(loginCtrl.VIEWS.FORGOT)">
-                <form novalidate name="loginCtrl.forgotForm" class="form" ng-submit="loginCtrl.recoverPassword()">
-                    <fieldset>
-                        <span ng-show="loginCtrl.formErrorMessage" class="required-message error-message">{{ loginCtrl.formErrorMessage }}</span>
-                        <p>Proporciona tu correo electrónico registrado</p>
-                        <div class="required-message" ng-show="loginCtrl.forgotForm.$submitted || loginCtrl.forgotForm.forgotEmail.$touched">
-                            <span ng-show="loginCtrl.forgotForm.forgotEmail.$error.required">El correo electrónico es requerido.</span>
-                            <span ng-show="loginCtrl.forgotForm.forgotEmail.$error.email">El correo electrónico no es válido.</span>
-                        </div>
-                        <input type="email" placeholder="correo electrónico" name="forgotEmail" ng-model="loginCtrl.forgot.email" required>
-                    </fieldset>
-                    <fieldset>
-                        <button class="button-login">recuperar</button>
-                        <a href="" ng-click="loginCtrl.changeView(loginCtrl.VIEWS.LOGIN)">Cancelar</a>
-                    </fieldset>
-                </form>
-            </div>
-            <div class="forgot-form" ng-show="loginCtrl.isCurrentView(loginCtrl.VIEWS.RESET)">
-                <form novalidate name="loginCtrl.resetForm" class="form" ng-submit="loginCtrl.resetPassword()">
-                    <fieldset>
-                        <p>Introduce una nueva contraseña para tu cuenta</p>
-                        <div class="required-message" ng-show="loginCtrl.resetForm.$submitted || loginCtrl.resetForm.resetPassword.$touched">
-                            <div ng-show="loginCtrl.resetForm.resetPassword.$error.required">El password es requerido.</div>
-                            <div ng-show="loginCtrl.resetForm.resetPassword.$error.minlength">El password debe tener una longitud mínima de 8 caracteres.</div>
-                        </div>
-                        <input type="password" placeholder="Password" name="resetPassword" ng-model="loginCtrl.reset.password" minlength="8" required>
-                        <div class="required-message" ng-show="loginCtrl.resetForm.$submitted || loginCtrl.resetForm.resetConfirmation.$touched">
-                            <div ng-show="loginCtrl.resetForm.resetConfirmation.$error.required">La confirmación del password es requerida.</div>
-                            <div ng-show="loginCtrl.resetForm.resetConfirmation.$error.pwCheck && !loginCtrl.resetForm.resetConfirmation.$error.required">El password y la confirmación deben ser iguales.</div>
-                        </div>
-                        <input type="password" placeholder="Confirmar password" name="resetConfirmation" ng-model="loginCtrl.reset.passwordConfirmation" pw-check="loginCtrl.reset.password" required>
-                    </fieldset>
-                    <fieldset>
-                        <button class="button-login">cambiar contraseña</button>
-                        <a href="" ng-click="loginCtrl.changeView(loginCtrl.VIEWS.LOGIN)">Cancelar</a>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
+        </form>
     </div>
-</div-->
+    <div class="forgot-form" ng-if="$ctrl.isCurrentView($ctrl.VIEWS.FORGOT)">
+        <hgroup>
+            <h1>
+                Recuperar password
+            </h1>
+        </hgroup>
+        <form name="$ctrl.forgotForm" ng-submit="$ctrl.recoverPassword()">
+            <md-input-container class="md-block">
+                <label>Correo electrónico</label>
+                <input type="email" name="email" ng-model="$ctrl.newUser.email" required>
+                <div ng-messages="$ctrl.forgotForm.email.$error">
+                    <div ng-message="required">El correo electrónico es requerido</div>
+                    <div ng-message="email">El correo electrónico es inválido</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <md-button type='submit' class="md-raised md-primary">Recuperar</md-button>
+            </md-input-container>
+
+            <div>
+                <a href="" ng-click="$ctrl.changeView($ctrl.VIEWS.LOGIN)">Cancelar</a>
+            </div>
+        </form>
+    </div>
+    <div class="reset-form" ng-if="$ctrl.isCurrentView($ctrl.VIEWS.RESET)">
+        <hgroup>
+            <h1>
+                Registro
+            </h1>
+        </hgroup>
+        <form name="$ctrl.resetForm" ng-submit="$ctrl.resetPassword()">
+            <md-input-container class="md-block">
+                <label>Contraseña</label>
+                <input type="password" name="password" ng-model="$ctrl.newUser.password" minlength="8" required>
+                <div ng-messages="$ctrl.resetForm.password.$error">
+                    <div ng-message="required">La contraseña es requerida</div>
+                    <div ng-message="minlength">El password debe tener una longitud mínima de 8 caracteres</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Confirmar contraseña</label>
+                <input type="password" name="confirmation" ng-model="$ctrl.newUser.confirmation" required>
+                <div ng-messages="$ctrl.resetForm.confirmation.$error">
+                    <div ng-message="required">La confirmación de la contraseña es requerida</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <md-button type='submit' class="md-raised md-primary">Cambiar contraseña</md-button>
+            </md-input-container>
+
+            <div>
+                <a href="" ng-click="$ctrl.changeView($ctrl.VIEWS.LOGIN)">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</section>
