@@ -21,9 +21,9 @@
                     <div ng-message="required">La contraseña es requerida</div>
                 </div>
             </md-input-container>
-            <md-input-container class="md-block" layout="row">
+            <md-input-container layout="row" layout-align="start center" >
                 <md-button type='submit' class="md-raised md-primary">Ingresar</md-button>
-                <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                <md-progress-circular md-mode="indeterminate" md-diameter="40" ng-if="$ctrl.loading"></md-progress-circular>
             </md-input-container>
 
             <div>
@@ -109,9 +109,9 @@
                 <input type="text" name="reference" ng-model="$ctrl.newUser.reference">
                 <div class="hint">Opcional</div>
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container layout="row" layout-align="start center" >
                 <md-button type='submit' class="md-raised md-primary">Registrar</md-button>
-                <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                <md-progress-circular md-mode="indeterminate" md-diameter="40" ng-if="$ctrl.loading"></md-progress-circular>
             </md-input-container>
 
             <div>
@@ -134,9 +134,9 @@
                     <div ng-message="email">El correo electrónico es inválido</div>
                 </div>
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container layout="row" layout-align="start center" >
                 <md-button type='submit' class="md-raised md-primary">Recuperar</md-button>
-                <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                <md-progress-circular md-mode="indeterminate" md-diameter="40" ng-if="$ctrl.loading"></md-progress-circular>
             </md-input-container>
 
             <div>
@@ -160,7 +160,7 @@
                     <div ng-message="minlength">La contraseña debe tener una longitud mínima de 8 caracteres</div>
                 </div>
             </md-input-container>
-            <md-input-container class="md-block">
+            <md-input-container layout="row" layout-align="start center" >
                 <label>Confirmar contraseña</label>
                 <input type="password" name="confirmation" ng-model="$ctrl.reset.confirmation" pw-check="$ctrl.reset.password" required>
                 <div ng-messages="$ctrl.resetForm.confirmation.$error" md-auto-hide="false">
@@ -170,7 +170,7 @@
             </md-input-container>
             <md-input-container class="md-block">
                 <md-button type='submit' class="md-raised md-primary">Cambiar contraseña</md-button>
-                <md-progress-circular md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                <md-progress-circular md-mode="indeterminate" md-diameter="40" ng-if="$ctrl.loading"></md-progress-circular>
             </md-input-container>
 
             <div>
