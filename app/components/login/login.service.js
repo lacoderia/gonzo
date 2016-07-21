@@ -22,8 +22,6 @@
 
                             sessionService.setHttpHeaders(headers);
 
-                            var user = data.user;
-                            sessionService.createSession(user);
                         }
 
                         return data;
@@ -36,10 +34,11 @@
                 });
         };
 
-        var signUp = function(user){
+        var signUp = function(user, internal){
             var registerServiceURL = AUTH_API_URL_BASE + '/users/sign_up';
-            return $http.post(registerServiceURL, { user: user })
+            return $http.post(registerServiceURL, { user: user, internal: internal })
                 .then(function(response) {
+                    console.log(response);
                     var data = response.data;
                     if (typeof data === 'object') {
 
@@ -51,6 +50,7 @@
                                 'uid': response.headers('uid'),
                                 'client': response.headers('client')
                             };
+                            console.log(headers);
 
                             sessionService.setHttpHeaders(headers);
 

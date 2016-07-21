@@ -27,6 +27,8 @@ md-step-content > div {
       width: 100%; }
   .login-component md-input-container:not(.md-input-invalid) .md-input-message-animation {
     visibility: hidden; }
+  .login-component .group-title {
+    font-size: 18px; }
   .login-component .hint {
     /* Position the hint */
     position: absolute;

@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    function loginController($timeout, $location, loginService, routingService) {
+    function loginController($timeout, $location, $mdToast, loginService, routingService) {
 
         /**
          *
@@ -12,14 +12,15 @@
         var currentView = 'login';
         var resetToken = undefined;
 
-        ctrl.formErrorMessage = '';
+        ctrl.loading = false;
 
         // Object that holds all possible views
         ctrl.VIEWS = {
             LOGIN: 'login',
             SIGNUP: 'signup',
             FORGOT: 'forgot',
-            RESET: 'reset'
+            RESET: 'reset',
+            WAIT: 'wait'
         };
 
         // Object that holds the username and password values
@@ -32,9 +33,13 @@
         ctrl.newUser = {
             firstName: undefined,
             lastName: undefined,
+            city: undefined,
+            state: undefined,
+            country: undefined,
             email: '',
             password: '',
-            confirmation: ''
+            confirmation: '',
+            reference: undefined
         };
 
         // Object that holds the recover password data
@@ -68,8 +73,6 @@
         // Function to reset forms
         var resetViewForm = function(formName){
 
-            ctrl.formErrorMessage = '';
-
             switch(formName){
                 case 'login':
                     ctrl.credentials = angular.copy(originalCredentials);
@@ -99,7 +102,7 @@
         // Function to authenticate a user
         ctrl.login = function() {
 
-            ctrl.formErrorMessage = '';
+            ctrl.loading = true;
 
             if(ctrl.loginForm.$valid) {
 
@@ -108,10 +111,16 @@
                         if(data.user){
                             $location.path('/customizer');
                         }
+                        ctrl.loading = false;
                     }, function(error) {
                         if(error && error.errors){
-                            ctrl.formErrorMessage = error.errors[0].title;
+                            $mdToast.show(
+                                $mdToast.simple()
+                                    .textContent(error.errors[0].title)
+                                    .position('top right')
+                            );
                         }
+                        ctrl.loading = false;
                     });
             }
 
@@ -120,25 +129,37 @@
         // Function to register a new user
         ctrl.signUp = function() {
 
-            ctrl.formErrorMessage = '';
+            ctrl.loading = true;
 
             var user = {
                 first_name: ctrl.newUser.firstName,
                 last_name: ctrl.newUser.lastName,
+                city: ctrl.newUser.city,
+                state: ctrl.newUser.state,
+                country: ctrl.newUser.country,
                 email: ctrl.newUser.email,
                 password: ctrl.newUser.password,
-                password_confirmation: ctrl.newUser.confirmation
+                password_confirmation: ctrl.newUser.confirmation,
+                reference: ctrl.newUser.reference
             };
+
+            var internal = true;
 
             if(ctrl.signupForm.$valid) {
 
-                loginService.signUp(user)
+                loginService.signUp(user, internal)
                     .then(function(data) {
-
+                        ctrl.changeView(ctrl.VIEWS.WAIT);
+                        ctrl.loading = false;
                     }, function(error) {
                         if(error && error.errors){
-                            ctrl.formErrorMessage = error.errors[0].title;
+                            $mdToast.show(
+                                $mdToast.simple()
+                                    .textContent(error.errors[0].title)
+                                    .position('top right')
+                            );
                         }
+                        ctrl.loading = false;
                     });
             }
         };
@@ -146,17 +167,27 @@
         // Function to recover user password
         ctrl.recoverPassword = function() {
 
-            ctrl.formErrorMessage = '';
+            ctrl.loading = true;
 
             if(ctrl.forgotForm.$valid) {
 
                 loginService.recoverPassword(ctrl.forgot)
                     .then(function(data) {
-
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .textContent('Recibirás instrucciones en tu correo electrónico para recuperar tu contraseña')
+                                .position('top right')
+                        );
+                        ctrl.loading = false;
                     }, function(error) {
                         if(error && error.errors){
-                            ctrl.formErrorMessage = error.errors[0].title;
+                            $mdToast.show(
+                                $mdToast.simple()
+                                    .textContent(error.errors[0].title)
+                                    .position('top right')
+                            );
                         }
+                        ctrl.loading = false;
                     });
             }
         };
@@ -164,7 +195,7 @@
         // Function to reset user password
         ctrl.resetPassword = function() {
 
-            ctrl.formErrorMessage = '';
+            ctrl.loading = true;
 
             var reset = {
                 reset_password_token: resetToken,
@@ -176,11 +207,21 @@
 
                 loginService.resetPassword(reset)
                     .then(function(data) {
-
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .textContent('Tu contraseña fue actualizada. Ya puedes iniciar sesión.')
+                                .position('top right')
+                        );
+                        ctrl.loading = false;
                     }, function(error) {
                         if(error && error.errors){
-                            ctrl.formErrorMessage = error.errors[0].title;
+                            $mdToast.show(
+                                $mdToast.simple()
+                                    .textContent(error.errors[0].title)
+                                    .position('top right')
+                            );
                         }
+                        ctrl.loading = false;
                     });
             }
         };
