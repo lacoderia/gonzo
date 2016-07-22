@@ -27,14 +27,13 @@
                             _collectionTiles = [];
                             for(var itemIndex=0; itemIndex<response.data.tile_types.length; itemIndex++){
                                 var tile_type = response.data.tile_types[itemIndex];
-                                var collectionTile = {
+                                _collectionTiles.push({
                                     id: tile_type.key,
                                     title: tile_type.value,
                                     inches: tile_type.inches,
                                     centimeters: tile_type.centimeters,
                                     tiles: [],
-                                };
-                                _collectionTiles.push(collectionTile);
+                                });
                             }
                         }
                     }catch(error){
@@ -42,6 +41,36 @@
                     }
                 },
                 function (error) {
+                    console.log(error);
+                }
+            );
+        };
+
+        function callTilesByCollectionId(collectionId) {
+            var serviceURL = AUTH_API_URL_BASE + '/tiles/by_tile_type';
+            return $http.get(serviceURL, { params: { tile_type: collectionId } }).then(
+                function (response) {
+                    try{
+                        if(response.data){
+                            var collectionTiles = getCollectionTilesById(collectionId);
+                            collectionTiles.tiles = [];
+                            for(var itemIndex=0; itemIndex<response.data.tiles.length; itemIndex++){
+                                var tile = response.data.tiles[itemIndex];
+                                if(tile.active){
+                                    collectionTiles.tiles.push({
+                                        id: tile.id,
+                                        name: tile.name,
+                                        url: tile.url
+                                    });
+                                }
+                            }
+                            return collectionTiles.tiles;
+                        }
+                    } catch(error){
+                        console.log(error)
+                    }
+                },
+                function(error) {
                     console.log(error);
                 }
             );
@@ -72,17 +101,24 @@
 
         /**
          *
-         * @param selectedCollection
+         * @param collectionId
+         * @returns {Array}
          */
-        function setSelectedCollectionTiles(collectionId) {
+        function getCollectionTilesById(collectionId) {
             var collections = _collectionTiles.filter(function(item) {
                 return item.id == collectionId;
             });
 
-            if(collections.length > 0){
-                _selectedCollection = collections[0];
-            }
+            return (collections.length > 0)? collections[0] : [];
+        };
 
+        /**
+         *
+         * @param selectedCollection
+         */
+        function setSelectedCollectionTiles(collectionId) {
+            var selectedCollection = getCollectionTilesById(collectionId);
+            _selectedCollection = selectedCollection;
         };
 
         /**
@@ -109,7 +145,8 @@
             getSelectedCollectionTiles: getSelectedCollectionTiles,
             setSelectedCollectionTiles: setSelectedCollectionTiles,
             getSelectedTiles: getSelectedTiles,
-            setSelectedTiles: setSelectedTiles
+            setSelectedTiles: setSelectedTiles,
+            callTilesByCollectionId: callTilesByCollectionId
         };
 
         return service;

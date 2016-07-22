@@ -9,7 +9,6 @@
          */
         var ctrl = this;
         var _collectionTiles;
-        var _tiles;
         var _selectedCollectionTiles;
         var _selectedTiles;
 
@@ -49,16 +48,30 @@
          *
          * @param collectionId
          */
-        ctrl.selectCollectionTiles = function(collectionId){
+        ctrl.selectCollectionTiles = function(collection){
             try{
-                _selectedTiles = undefined;
-                collectionTilesService.setSelectedCollectionTiles(collectionId);
-                _selectedCollectionTiles = collectionTilesService.getSelectedCollectionTiles();
-                _tiles = _selectedCollectionTiles.tiles;
+                if(!_selectedCollectionTiles){
+                    _selectedCollectionTiles = collection;
+                    collectionTilesService.setSelectedCollectionTiles(collection.id);
+                    if(_selectedCollectionTiles.tiles.length <= 0){
+                        collectionTilesService.callTilesByCollectionId(collection.id).then(
+                            function (response) {
+                                _selectedCollectionTiles.tiles = response;
+                            }
+                        );
+                    }
+                }else{
+                    if(_selectedCollectionTiles.id != collection.id){
+                        _selectedCollectionTiles = collection;
+                        collectionTilesService.setSelectedCollectionTiles(collection.id);
+                    }
+                }
+
+                showGridBottomSheet();
+
             }catch (error){
                 console.log(error);
             }
-            showGridBottomSheet();
         };
 
 
@@ -119,14 +132,6 @@
          */
         ctrl.getSelectedTiles = function () {
             return _selectedTiles;
-        };
-
-        /**
-         *
-         * @returns {*}
-         */
-        ctrl.getTiles = function() {
-            return _tiles;
         };
 
 
